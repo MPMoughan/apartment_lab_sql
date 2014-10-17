@@ -71,12 +71,56 @@ MattM=# SELECT * FROM owners WHERE name = 'Donald';
         5 | Donald |  45
 (1 row)
 
-7. Show the age of all owners who are older than 30. 
-8. Show the name of all owners whose name starts with an E. 
+7. Show the age of all owners who are older than 30.
+
+MattM=# SELECT * FROM owners WHERE age > 30;
+ owner_id |   name   | age 
+----------+----------+-----
+        1 | Patrick  |  61
+        2 | Jennifer |  34
+        3 | Dan      |  36
+        5 | Donald   |  45
+(4 rows)
+
+8. Show the name of all owners whose name contains an E.
+
+MattM=# SELECT * FROM owners WHERE name LIKE '%e%';
+ owner_id |   name   | age 
+----------+----------+-----
+        2 | Jennifer |  34
+(1 row)
+
 9. Add an owner named John who is 33 years old to the owners table.
+
+MattM=# SELECT * FROM owners WHERE name = 'John';
+ owner_id | name | age 
+----------+------+-----
+        6 | John |  33
+(1 row)
+
 10. Add an owner named Jane who is 43 years old to the owners table. 
+
+MattM=# SELECT * FROM owners WHERE name = 'Jane';
+ owner_id | name | age 
+----------+------+-----
+        7 | Jane |  43
+(1 row)
+
 11. Change Jane's age to 30. 
+
+MattM=# SELECT * FROM owners WHERE name = 'Jane';
+ owner_id | name | age 
+----------+------+-----
+        7 | Jane |  30
+(1 row)
+
 12. Change Jane's name to Janet. 
+
+MattM=# SELECT * FROM owners WHERE name = 'Janet';
+ owner_id | name  | age 
+----------+-------+-----
+        7 | Janet |  30
+(1 row)
 13. Add a property named Archstone that has 20 units. 
 14. Delete the owner named Jane. 
 15. Show all of the properties in alphabetical order that are not named Archstone and do not have an id of 3 or 5. 
