@@ -23,11 +23,54 @@ Write down the following sql statements that are required to solve the following
 
 ```    
 1. Show all the tables.
+
+MattM=# SELECT * FROM owners JOIN properties ON owners.owner_id=properties.owner_id;
+ owner_id | name | age | property_id | name | number_of_units | owner_id 
+----------+------+-----+-------------+------+-----------------+----------
+
 2. Show all the users. 
+
 3. Show all the data in the owners table.
+
+MattM=# SELECT * FROM owners;
+ owner_id |   name   | age 
+----------+----------+-----
+        1 | Patrick  |  61
+        2 | Jennifer |  34
+        3 | Dan      |  36
+        4 | Matt     |  28
+(4 rows)
+
 4. Show the names of all owners. 
+
+MattM=# SELECT name FROM owners;
+   name   
+----------
+ Patrick
+ Jennifer
+ Dan
+ Matt
+(4 rows)
+
 5. Show the ages of all of the owners in ascending order. 
+
+MattM=# SELECT * FROM owners ORDER BY age ASC;                                                                                                                                    
+ owner_id |   name   | age 
+----------+----------+-----
+        4 | Matt     |  28
+        2 | Jennifer |  34
+        3 | Dan      |  36
+        1 | Patrick  |  61
+(4 rows)
+
 6. Show the name of an owner whose name is Donald. 
+
+MattM=# SELECT * FROM owners WHERE name = 'Donald';                                                                                                                                 
+ owner_id |  name  | age 
+----------+--------+-----
+        5 | Donald |  45
+(1 row)
+
 7. Show the age of all owners who are older than 30. 
 8. Show the name of all owners whose name starts with an E. 
 9. Add an owner named John who is 33 years old to the owners table.
