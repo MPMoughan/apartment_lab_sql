@@ -24,11 +24,11 @@ Write down the following sql statements that are required to solve the following
 ```    
 1. Show all the tables.
 
-MattM=# SELECT * FROM owners JOIN properties ON owners.owner_id=properties.owner_id;
- owner_id | name | age | property_id | name | number_of_units | owner_id 
-----------+------+-----+-------------+------+-----------------+----------
+\dt
 
 2. Show all the users. 
+
+\du
 
 3. Show all the data in the owners table.
 
@@ -133,6 +133,7 @@ MattM=# SELECT * FROM properties;
 14. Delete the owner named Janet.
 
 MattM=# DELETE FROM owners WHERE name = 'Janet';
+
 DELETE 1
 MattM=# SELECT * FROM owners;
  owner_id |   name   | age 
@@ -147,17 +148,68 @@ MattM=# SELECT * FROM owners;
 
 15. Show all of the properties in alphabetical order that are not named Archstone and do not have an id of 3 or 5.
 
+MattM=# SELECT * FROM properties WHERE property_id NOT IN (3, 5) AND name NOT LIKE 'Archstone' ORDER BY name ASC;
+ property_id |     name      | number_of_units | owner_id 
+-------------+---------------+-----------------+----------
+           7 | Campus Town   |              30 |        2
+           9 | Humphrey Hall |              40 |        9
+           8 | Roseneth      |               6 |        8
+(3 rows)
 
 
 16. Count the total number of rows in the properties table.
+
+MattM=# SELECT COUNT(*) FROM properties;
+ count 
+-------
+     4
+(1 row
+
 17. Show the highest age of all owners.
+
+MattM=#  SELECT MAX(age) FROM owners;
+ max 
+-----
+  61
+(1 row)
+
 18. Show the names of the first three owners in your owners table.
+
+MattM=# SELECT * FROM owners LIMIT 3;
+ owner_id |   name   | age 
+----------+----------+-----
+        1 | Patrick  |  61
+        2 | Jennifer |  34
+        3 | Dan      |  36
+(3 rows)
+
 19. Create a foreign key that references the owner_id in the owners table and forces the constraint ON DELETE NO ACTION. 
+
+MattM=# ALTER TABLE properties ADD CONSTRAINT owner_fk FOREIGN KEY (owner_id)REFERENCES owners (owner_id) ON DELETE NO ACTION;
+ALTER TABLE
+
 20. Show all of the information from the owners table and the properties table in one joined table.  
+
+MattM=# SELECT * FROM owners FULL OUTER JOIN properties ON owners.owner_id = properties.owner_id;
+ owner_id |   name   | age | property_id |     name      | number_of_units | owner_id 
+----------+----------+-----+-------------+---------------+-----------------+----------
+        1 | Patrick  |  61 |           6 | Archstone     |              20 |        1
+        2 | Jennifer |  34 |           7 | Campus Town   |              30 |        2
+          |          |     |           8 | Roseneth      |               6 |        8
+          |          |     |           9 | Humphrey Hall |              40 |        9
+        5 | Donald   |  45 |             |               |                 |         
+        6 | John     |  33 |             |               |                 |         
+        4 | Matt     |  28 |             |               |                 |         
+        3 | Dan      |  36 |             |               |                 |         
+(8 rows)
+
 ```
 Bonus (this might require you to look up documentation online)
 
 ```
 1. In the properties table change the name of the column "name" to "property_name". 
+
+
+
 2. Count the total number of properties where the owner_id is between 1 and 3.
 ```
