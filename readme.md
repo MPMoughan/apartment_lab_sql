@@ -121,9 +121,34 @@ MattM=# SELECT * FROM owners WHERE name = 'Janet';
 ----------+-------+-----
         7 | Janet |  30
 (1 row)
+
 13. Add a property named Archstone that has 20 units. 
-14. Delete the owner named Jane. 
-15. Show all of the properties in alphabetical order that are not named Archstone and do not have an id of 3 or 5. 
+
+MattM=# SELECT * FROM properties;
+ property_id |   name    | number_of_units | owner_id 
+-------------+-----------+-----------------+----------
+           6 | Archstone |              20 |        1
+(1 row)
+
+14. Delete the owner named Janet.
+
+MattM=# DELETE FROM owners WHERE name = 'Janet';
+DELETE 1
+MattM=# SELECT * FROM owners;
+ owner_id |   name   | age 
+----------+----------+-----
+        1 | Patrick  |  61
+        2 | Jennifer |  34
+        3 | Dan      |  36
+        4 | Matt     |  28
+        5 | Donald   |  45
+        6 | John     |  33
+(6 rows)
+
+15. Show all of the properties in alphabetical order that are not named Archstone and do not have an id of 3 or 5.
+
+
+
 16. Count the total number of rows in the properties table.
 17. Show the highest age of all owners.
 18. Show the names of the first three owners in your owners table.
